@@ -20,7 +20,7 @@ class Channel:
         self.title = self.channel["items"][0]["snippet"]["title"]
         self.description = self.channel['items'][0]['snippet']['description']
         self.url = f"https://www.youtube.com/channel/{self.channel_id}"
-        self.subscriber_count = self.channel['items'][0]['statistics']['subscriberCount']
+        self.subscriber_count = int(self.channel['items'][0]['statistics']['subscriberCount'])
         self.video_count = self.channel['items'][0]['statistics']['videoCount']
         self.view_count = self.channel['items'][0]['statistics']['viewCount']
 
@@ -49,6 +49,40 @@ class Channel:
             json.dump(f'Название канала: {moscowpython.title}\n', file, ensure_ascii=False, indent=2)
             json.dump(f'Количество просмотров: {moscowpython.video_count}\n', file, ensure_ascii=False)
             json.dump(f'URL адрес канала: {moscowpython.url}\n', file, ensure_ascii=False)
+
+    def __str__(self):
+        return f'{self.title} ({self.url})'
+
+    def __repr__(self):
+        return f'{self.__class__.__name__}({self.channel_id})'
+
+    def __add__(self, other):
+        '''сложение'''
+        return self.subscriber_count + other.subscriber_count
+
+    def __sub__(self, other):
+        ''''вычитание'''
+        return self.subscriber_count - other.subscriber_count
+
+    def __sub__(self, other):
+        ''''вычитание'''
+        return other.subscriber_count - self.subscriber_count
+
+    def __gt__(self, other):
+        ''''сравнение'''
+        return self.subscriber_count > other.subscriber_count
+
+    def __lt__(self, other):
+        return self.subscriber_count < other.subscriber_count
+
+    def __le__(self, other):
+        return self.subscriber_count <= other.subscriber_count
+
+    def __ge__(self, other):
+        return self.subscriber_count >= other.subscriber_count
+
+    def __eq__(self, other):
+        return self.subscriber_count == other.subscriber_count
 
 
 

@@ -33,11 +33,11 @@ class Channel:
 
 
 
-    # def print_info(self) -> str:
-    #     """Выводит в консоль информацию о канале."""
-    #     channel_id = self.channel_id
-    #     channel = youtube.channels().list(id=channel_id, part='snippet,statistics').execute()
-    #     print(json.dumps(channel, indent=2))
+    def print_info(self) -> str:
+        """Выводит в консоль информацию о канале."""
+        channel_id = self.channel_id
+        channel = self.youtube.channels().list(id=channel_id, part='snippet,statistics').execute()
+        print(json.dumps(channel, indent=2))
 
 
     def to_json(self, file):
